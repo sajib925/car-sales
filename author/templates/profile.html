@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-3">Hello {{ user.username }}, Welcome to your Profile</h1>
+    <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Your Profile</a>
+    <h2 class="my-3">Order History</h2>
+    <hr />
+    <ul class="list-group">
+        {% for order in orders %}
+            <li class="list-group-item">
+                <img src="{{ order.car.image.url }}" alt="{{ order.car.title }}" class="img-thumbnail" style="width: 50px; height: auto;">
+                {{ order.car.title }} - ${{ order.car.price }}
+                <span class="badge bg-success float-end">{{ order.created_at }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+
